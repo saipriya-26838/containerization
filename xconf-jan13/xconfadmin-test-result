@@ -1,0 +1,75 @@
+saipriya@SaiPriya:~/containerization/xconf-jan13$ sudo docker build -t xconfadmin:latest ./xconfadmin
+failed to fetch metadata: fork/exec /usr/local/lib/docker/cli-plugins/docker-buildx: no such file or directory
+
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  1.548MB
+Step 1/10 : FROM golang:1.20 as builder
+1.20: Pulling from library/golang
+6a299ae9cfd9: Pull complete
+e08e8703b2fb: Pull complete
+68e92d11b04e: Pull complete
+4105062d1ee6: Pull complete
+870a28135dd0: Pull complete
+ffe80ff75448: Pull complete
+4f4fb700ef54: Pull complete
+Digest: sha256:8f9af7094d0cb27cc783c697ac5ba25efdc4da35f8526db21f7aebb0b0b4f18a
+Status: Downloaded newer image for golang:1.20
+ ---> d5beeac3653f
+Step 2/10 : WORKDIR /app
+ ---> Running in d70d459dad5a
+ ---> Removed intermediate container d70d459dad5a
+ ---> ad31f08e3951
+Step 3/10 : COPY go.mod go.sum ./
+ ---> 66078056d705
+Step 4/10 : RUN go mod download
+ ---> Running in 9453a02036d0
+ ---> Removed intermediate container 9453a02036d0
+ ---> 7aa53ffbee4b
+Step 5/10 : COPY . .
+ ---> 2b3bcdb721b9
+Step 6/10 : EXPOSE 9000
+ ---> Running in f3971d33a699
+ ---> Removed intermediate container f3971d33a699
+ ---> 8dbdc8f62537
+Step 7/10 : RUN go build -o xconfadmin main.go
+ ---> Running in e6779e8b3d05
+ ---> Removed intermediate container e6779e8b3d05
+ ---> 06d0c1dd513a
+Step 8/10 : FROM debian:bullseye-slim
+bullseye-slim: Pulling from library/debian
+89320e7119e2: Pull complete
+Digest: sha256:6344a6747740d465bff88e833e43ef881a8c4dd51950dba5b30664c93f74cbef
+Status: Downloaded newer image for debian:bullseye-slim
+ ---> 6c188559d5b4
+Step 9/10 : WORKDIR /app
+ ---> Running in 6ee9adeff149
+ ---> Removed intermediate container 6ee9adeff149
+ ---> e2650205b66b
+Step 10/10 : CMD ["./xconfadmin"]
+ ---> Running in f8fe7e099529
+ ---> Removed intermediate container f8fe7e099529
+ ---> 10e8977aeaad
+Successfully built 10e8977aeaad
+Successfully tagged xconfadmin:latest
+saipriya@SaiPriya:~/containerization/xconf-jan13$ sudo docker run -d -p 9000:9000 xconfadmin:latest ./xconfadmin
+0fe6e62e2f0b9ebba473715c1645a92bb23c6bcc84e3d6f3ca46676c5f513ffb
+docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: "./xconfadmin": stat ./xconfadmin: no such file or directory: unknown.
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps -a
+CONTAINER ID   IMAGE                   COMMAND              CREATED         STATUS                     PORTS                                       NAMES
+0fe6e62e2f0b   xconfadmin:latest       "./xconfadmin"       8 seconds ago   Created                    0.0.0.0:9000->9000/tcp, :::9000->9000/tcp   reverent_keller
+54825246dc9f   xconfwebconfig:latest   "./xconfwebconfig"   9 minutes ago   Exited (2) 9 minutes ago                                               admiring_williamson
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker images
+REPOSITORY       TAG             IMAGE ID       CREATED              SIZE
+xconfadmin       latest          10e8977aeaad   56 seconds ago       80.7MB
+<none>           <none>          06d0c1dd513a   About a minute ago   1.05GB
+xconfwebconfig   latest          bf629c7b12b9   14 minutes ago       24.9MB
+<none>           <none>          965035c6168b   14 minutes ago       428MB
+debian           bullseye-slim   6c188559d5b4   3 days ago           80.7MB
+alpine           latest          b0c9d60fc5e3   7 days ago           7.83MB
+golang           1.20            d5beeac3653f   11 months ago        846MB
+golang           1.18-alpine     a77f45e5f987   2 years ago          330MB
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES

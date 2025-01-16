@@ -1,0 +1,100 @@
+saipriya@SaiPriya:~/containerization/xconf-jan13$ sudo docker build -t xconfui:latest ./xconfui/
+failed to fetch metadata: fork/exec /usr/local/lib/docker/cli-plugins/docker-buildx: no such file or directory
+
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  2.302MB
+Step 1/7 : FROM node:14-alpine
+14-alpine: Pulling from library/node
+f56be85fc22e: Already exists
+8f665685b215: Already exists
+e5fca6c395a6: Already exists
+561cb69653d5: Already exists
+Digest: sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33
+Status: Downloaded newer image for node:14-alpine
+ ---> 0dac3dc27b1a
+Step 2/7 : WORKDIR /usr/src/app
+ ---> Running in 4097bfade124
+ ---> Removed intermediate container 4097bfade124
+ ---> c3766bbda349
+Step 3/7 : COPY package*.json ./
+ ---> 91b76af5a03f
+Step 4/7 : RUN npm install && npm audit fix
+ ---> Running in a7870cf9b3d2
+npm WARN deprecated glob@3.1.21: Glob versions prior to v9 are no longer supported
+npm WARN deprecated rimraf@2.2.8: Rimraf versions prior to v4 are no longer supported
+npm WARN deprecated minimatch@0.2.14: Please update to minimatch 3.0.2 or higher to avoid a RegExp DoS issue
+npm WARN deprecated coffee-script@1.3.3: CoffeeScript on NPM has moved to "coffeescript" (no hyphen)
+npm WARN deprecated connect@2.19.6: connect 2.x series is deprecated
+npm WARN deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm WARN deprecated minimatch@1.0.0: Please update to minimatch 3.0.2 or higher to avoid a RegExp DoS issue
+npm WARN deprecated graceful-fs@1.2.3: please upgrade to graceful-fs 4 for compatibility with current and future versions of Node.js
+npm WARN deprecated glob@3.2.11: Glob versions prior to v9 are no longer supported
+npm WARN deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm WARN deprecated glob@7.1.7: Glob versions prior to v9 are no longer supported
+npm WARN deprecated minimatch@0.3.0: Please update to minimatch 3.0.2 or higher to avoid a RegExp DoS issue
+npm WARN deprecated scmp@0.0.3: scmp v2 uses improved core crypto comparison since Node v6.6.0
+npm WARN deprecated osenv@0.1.5: This package is no longer supported.
+npm WARN lifecycle XCONF-AngularJS-UI@0.0.1~install: cannot run in wd XCONF-AngularJS-UI@0.0.1 bower install (wd=/usr/src/app)
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN XCONF-AngularJS-UI@0.0.1 No repository field.
+npm WARN XCONF-AngularJS-UI@0.0.1 No license field.
+npm WARN The package http-server is included as both a dev and production dependency.
+
+added 313 packages from 221 contributors and audited 313 packages in 19.489s
+
+22 packages are looking for funding
+  run `npm fund` for details
+
+found 181 vulnerabilities (12 low, 62 moderate, 85 high, 22 critical)
+  run `npm audit fix` to fix them, or `npm audit` for details
+npm WARN deprecated glob@7.1.7: Glob versions prior to v9 are no longer supported
+npm WARN deprecated osenv@0.1.5: This package is no longer supported.
+npm WARN notsup Unsupported engine for grunt@1.6.1: wanted: {"node":">=16"} (current: {"node":"14.21.3","npm":"6.14.18"})
+npm WARN notsup Not compatible with your version of node/npm: grunt@1.6.1
+npm WARN grunt-contrib-concat@0.5.1 requires a peer of grunt@>=0.4.0 but none is installed. You must install peer dependencies yourself.
+npm WARN grunt-contrib-connect@0.8.0 requires a peer of grunt@~0.4.0 but none is installed. You must install peer dependencies yourself.
+npm WARN grunt-contrib-watch@0.6.1 requires a peer of grunt@~0.4.0 but none is installed. You must install peer dependencies yourself.
+npm WARN grunt-shell@1.3.1 requires a peer of grunt@>=0.4.0 but none is installed. You must install peer dependencies yourself.
+npm WARN grunt-contrib-jshint@1.1.0 requires a peer of grunt@>=0.4.0 but none is installed. You must install peer dependencies yourself.
+npm WARN XCONF-AngularJS-UI@0.0.1 No repository field.
+npm WARN XCONF-AngularJS-UI@0.0.1 No license field.
+npm WARN The package http-server is included as both a dev and production dependency.
+
++ grunt-contrib-jshint@1.1.0
+added 32 packages from 37 contributors, removed 38 packages and updated 3 packages in 2.86s
+
+21 packages are looking for funding
+  run `npm fund` for details
+
+fixed 45 of 181 vulnerabilities in 313 scanned packages
+  8 vulnerabilities required manual review and could not be updated
+  5 package updates for 128 vulnerabilities involved breaking changes
+  (use `npm audit fix --force` to install breaking changes; or refer to `npm audit` for steps to fix these manually)
+ ---> Removed intermediate container a7870cf9b3d2
+ ---> 075e30b42254
+Step 5/7 : COPY . .
+ ---> 87b7a5830e56
+Step 6/7 : EXPOSE 9393
+ ---> Running in 5b4d13fcdf53
+ ---> Removed intermediate container 5b4d13fcdf53
+ ---> 6706e21bb06a
+Step 7/7 : CMD ["npm", "start"]
+ ---> Running in 7e7d962d000c
+ ---> Removed intermediate container 7e7d962d000c
+ ---> 0c9b5aedb6c0
+Successfully built 0c9b5aedb6c0
+Successfully tagged xconfui:latest
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker images
+REPOSITORY   TAG         IMAGE ID       CREATED          SIZE
+xconfui      latest      0c9b5aedb6c0   43 seconds ago   183MB
+node         14-alpine   0dac3dc27b1a   21 months ago    119MB
+saipriya@SaiPriya:~/containerization/xconf-jan13$ sudo docker run -d -p 9393:9393 xconfui:latest ./xconfui
+81a19a05c8d7a667b5d0dc5125253cb3f914489a09b3506f7f0ac90a72ca3eb8
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps -a
+CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS                      PORTS     NAMES
+81a19a05c8d7   xconfui:latest   "docker-entrypoint.s…"   14 seconds ago   Exited (1) 13 seconds ago             flamboyant_rosalind
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES

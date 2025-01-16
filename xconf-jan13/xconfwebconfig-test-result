@@ -1,0 +1,69 @@
+saipriya@SaiPriya:~/containerization/xconf-jan13$ sudo docker build -t xconfwebconfig:latest ./xconfwebconfig
+failed to fetch metadata: fork/exec /usr/local/lib/docker/cli-plugins/docker-buildx: no such file or directory
+
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  1.327MB
+Step 1/11 : FROM golang:1.18-alpine as builder
+1.18-alpine: Pulling from library/golang
+8921db27df28: Pull complete
+a2f8637abd91: Pull complete
+4ba80a8cd2c7: Pull complete
+dbc2308a4587: Pull complete
+Digest: sha256:77f25981bd57e60a510165f3be89c901aec90453fd0f1c5a45691f6cb1528807
+Status: Downloaded newer image for golang:1.18-alpine
+ ---> a77f45e5f987
+Step 2/11 : WORKDIR /app
+ ---> Running in 84e69a4ed19e
+ ---> Removed intermediate container 84e69a4ed19e
+ ---> baa27a02b328
+Step 3/11 : COPY go.mod go.sum ./
+ ---> 6acf2790a587
+Step 4/11 : RUN go mod download
+ ---> Running in df6db52c55b7
+ ---> Removed intermediate container df6db52c55b7
+ ---> 8edd29e4789d
+Step 5/11 : COPY . .
+ ---> ebe66947b0b3
+Step 6/11 : RUN go build -o xconfwebconfig .
+ ---> Running in 888dba2cde00
+ ---> Removed intermediate container 888dba2cde00
+ ---> 965035c6168b
+Step 7/11 : FROM alpine:latest
+latest: Pulling from library/alpine
+1f3e46996e29: Pull complete
+Digest: sha256:56fa17d2a7e7f168a043a2712e63aed1f8543aeafdcee47c58dcffe38ed51099
+Status: Downloaded newer image for alpine:latest
+ ---> b0c9d60fc5e3
+Step 8/11 : WORKDIR /root/
+ ---> Running in dbe3854dfeec
+ ---> Removed intermediate container dbe3854dfeec
+ ---> 27634ee8508c
+Step 9/11 : COPY --from=builder /app/xconfwebconfig .
+ ---> 4c9214d38c51
+Step 10/11 : EXPOSE 9001
+ ---> Running in 7e18e4330a69
+ ---> Removed intermediate container 7e18e4330a69
+ ---> 72b418479fc0
+Step 11/11 : CMD ["./xconfwebconfig"]
+ ---> Running in ef786abfc0b8
+ ---> Removed intermediate container ef786abfc0b8
+ ---> bf629c7b12b9
+Successfully built bf629c7b12b9
+Successfully tagged xconfwebconfig:latest
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker images
+REPOSITORY       TAG           IMAGE ID       CREATED         SIZE
+xconfwebconfig   latest        bf629c7b12b9   5 minutes ago   24.9MB
+<none>           <none>        965035c6168b   5 minutes ago   428MB
+alpine           latest        b0c9d60fc5e3   7 days ago      7.83MB
+golang           1.18-alpine   a77f45e5f987   2 years ago     330MB
+saipriya@SaiPriya:~/containerization/xconf-jan13$ sudo docker run -d -p 9001:9001 xconfwebconfig:latest ./xconfwebconfig
+54825246dc9f05e26ad7d161658158ac034e161586e99c4fea2d01ccee99aa7b
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps -a
+CONTAINER ID   IMAGE                   COMMAND              CREATED         STATUS
+   PORTS     NAMES
+54825246dc9f   xconfwebconfig:latest   "./xconfwebconfig"   6 seconds ago   Exited (2) 5 seconds ago             admiring_williamson
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
