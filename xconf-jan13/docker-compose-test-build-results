@@ -1,0 +1,149 @@
+saipriya@SaiPriya:~/containerization/xconf-jan13$ cat docker-compose.yml
+ version: '3.8'
+
+ services:
+   xconfui:
+     build:
+       context: ./xconfui
+       dockerfile: Dockerfile
+     ports:
+       - "9393:9393"
+     container_name: xconfui
+     restart: always
+
+   xconfwebconfig:
+     build:
+       context: ./xconfwebconfig
+       dockerfile: Dockerfile
+     ports:
+       - "9001:9001"
+     container_name: xconfwebconfig
+     restart: always
+
+   xconfadmin:
+     build:
+       context: ./xconfadmin
+       dockerfile: Dockerfile
+     ports:
+       - "9000:9000"
+     container_name: xconfadmin
+     restart: always
+
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker-compose up --build
+WARN[0000] /home/saipriya/containerization/xconf-jan13/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+[+] Running 0/0
+[+] Running 0/3fadmin      Building                                                                                                                                                                        0.1s
+ ⠼ Service xconfadmin      Building                                                                                                                                                                        0.5s
+ ⠼ Service xconfwebconfig  Building                                                                                                                                                                        0.5s
+[+] Building 70.1s (38/38) FINISHED                                                                                                                                                              docker:default
+ => [xconfui internal] load build definition from Dockerfile                                                                                                                                               0.0s
+ => => transferring dockerfile: 506B                                                                                                                                                                       0.0s
+ => [xconfadmin internal] load build definition from Dockerfile                                                                                                                                            0.0s
+ => => transferring dockerfile: 686B                                                                                                                                                                       0.0s
+ => WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 2)                                                                                                                             0.0s
+ => [xconfwebconfig internal] load build definition from Dockerfile                                                                                                                                        0.0s
+ => => transferring dockerfile: 793B                                                                                                                                                                       0.0s
+ => WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 2)                                                                                                                             0.0s
+ => [xconfadmin internal] load metadata for docker.io/library/debian:bullseye-slim                                                                                                                         3.0s
+ => [xconfui internal] load metadata for docker.io/library/node:14-alpine                                                                                                                                  2.3s
+ => [xconfwebconfig internal] load metadata for docker.io/library/alpine:latest                                                                                                                            3.7s
+ => [xconfwebconfig internal] load metadata for docker.io/library/golang:1.18-alpine                                                                                                                       3.7s
+ => [xconfui auth] library/node:pull token for registry-1.docker.io                                                                                                                                        0.0s
+ => [xconfadmin auth] library/debian:pull token for registry-1.docker.io                                                                                                                                   0.0s
+ => [xconfwebconfig auth] library/alpine:pull token for registry-1.docker.io                                                                                                                               0.0s
+ => [xconfwebconfig auth] library/golang:pull token for registry-1.docker.io                                                                                                                               0.0s
+ => [xconfui internal] load .dockerignore                                                                                                                                                                  0.0s
+ => => transferring context: 2B                                                                                                                                                                            0.0s
+ => [xconfui 1/5] FROM docker.io/library/node:14-alpine@sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33                                                                            0.0s
+ => [xconfui internal] load build context                                                                                                                                                                  0.1s
+ => => transferring context: 1.98MB                                                                                                                                                                        0.1s
+ => CACHED [xconfui 2/5] WORKDIR /usr/src/app                                                                                                                                                              0.0s
+ => CACHED [xconfui 3/5] COPY package*.json ./                                                                                                                                                             0.0s
+ => [xconfui 4/5] RUN npm install && npm audit fix                                                                                                                                                        33.4s
+ => [xconfadmin internal] load .dockerignore                                                                                                                                                               0.0s
+ => => transferring context: 2B                                                                                                                                                                            0.0s
+ => [xconfadmin stage-1 1/2] FROM docker.io/library/debian:bullseye-slim@sha256:6344a6747740d465bff88e833e43ef881a8c4dd51950dba5b30664c93f74cbef                                                          17.4s
+ => => resolve docker.io/library/debian:bullseye-slim@sha256:6344a6747740d465bff88e833e43ef881a8c4dd51950dba5b30664c93f74cbef                                                                              0.0s
+ => => sha256:6344a6747740d465bff88e833e43ef881a8c4dd51950dba5b30664c93f74cbef 4.54kB / 4.54kB                                                                                                             0.0s
+ => => sha256:5833c509a11eed92d3193e83c455a6126d495ef7a11d15ea8840a6b2b68ea01c 1.02kB / 1.02kB                                                                                                             0.0s
+ => => sha256:6c188559d5b401892f061b25a2832fef5c9ffceee5693a46d290ce8246363abe 453B / 453B                                                                                                                 0.0s
+ => => sha256:89320e7119e225692d79aaeb4989a18d7f97daafdb2b3782f84a0a8de31a09de 30.25MB / 30.25MB                                                                                                          15.8s
+ => => extracting sha256:89320e7119e225692d79aaeb4989a18d7f97daafdb2b3782f84a0a8de31a09de                                                                                                                  1.5s
+ => [xconfwebconfig internal] load .dockerignore                                                                                                                                                           0.0s
+ => => transferring context: 2B                                                                                                                                                                            0.0s
+ => [xconfwebconfig builder 1/6] FROM docker.io/library/golang:1.18-alpine@sha256:77f25981bd57e60a510165f3be89c901aec90453fd0f1c5a45691f6cb1528807                                                        55.0s
+ => => resolve docker.io/library/golang:1.18-alpine@sha256:77f25981bd57e60a510165f3be89c901aec90453fd0f1c5a45691f6cb1528807                                                                                0.0s
+ => => sha256:77f25981bd57e60a510165f3be89c901aec90453fd0f1c5a45691f6cb1528807 1.65kB / 1.65kB                                                                                                             0.0s
+ => => sha256:ab5685692564e027aa84e2980855775b2e48f8fc82c1590c0e1e8cbc2e716542 1.16kB / 1.16kB                                                                                                             0.0s
+ => => sha256:a77f45e5f987fb7def8755903ad89fe37a38105dcf475be26550d7d86364e166 5.01kB / 5.01kB                                                                                                             0.0s
+ => => sha256:8921db27df2831fa6eaa85321205a2470c669b855f3ec95d5a3c2b46de0442c9 3.37MB / 3.37MB                                                                                                             5.4s
+ => => sha256:a2f8637abd914a8a62416e027a351293d0472bc4b4f44383c6f425fd0e03861c 284.81kB / 284.81kB                                                                                                         1.7s
+ => => sha256:4ba80a8cd2c7b1695ffb2166c58c8d0f0d4562c943fdb929d22467df250536bb 115.40MB / 115.40MB                                                                                                        50.2s
+ => => extracting sha256:8921db27df2831fa6eaa85321205a2470c669b855f3ec95d5a3c2b46de0442c9                                                                                                                  0.1s
+ => => sha256:dbc2308a458705184f3d2a5000ced1c12609903c00c09a9cf01284764b57315b 155B / 155B                                                                                                                 5.7s
+ => => extracting sha256:a2f8637abd914a8a62416e027a351293d0472bc4b4f44383c6f425fd0e03861c                                                                                                                  0.1s
+ => => extracting sha256:4ba80a8cd2c7b1695ffb2166c58c8d0f0d4562c943fdb929d22467df250536bb                                                                                                                  4.3s
+ => => extracting sha256:dbc2308a458705184f3d2a5000ced1c12609903c00c09a9cf01284764b57315b                                                                                                                  0.0s
+ => [xconfwebconfig internal] load build context                                                                                                                                                           0.1s
+ => => transferring context: 1.19MB                                                                                                                                                                        0.1s
+ => [xconfwebconfig stage-1 1/3] FROM docker.io/library/alpine:latest@sha256:56fa17d2a7e7f168a043a2712e63aed1f8543aeafdcee47c58dcffe38ed51099                                                             23.0s
+ => => resolve docker.io/library/alpine:latest@sha256:56fa17d2a7e7f168a043a2712e63aed1f8543aeafdcee47c58dcffe38ed51099                                                                                     0.0s
+ => => sha256:483f502c0e6aff6d80a807f25d3f88afa40439c29fdd2d21a0912e0f42db842a 1.02kB / 1.02kB                                                                                                             0.0s
+ => => sha256:b0c9d60fc5e3fa2319a86ccc1cdf34c94c7e69766e8cebfb4111f7e54f39e8ff 581B / 581B                                                                                                                 0.0s
+ => => sha256:56fa17d2a7e7f168a043a2712e63aed1f8543aeafdcee47c58dcffe38ed51099 9.22kB / 9.22kB                                                                                                             0.0s
+ => => sha256:1f3e46996e2966e4faa5846e56e76e3748b7315e2ded61476c24403d592134f0 3.64MB / 3.64MB                                                                                                            22.8s
+ => => extracting sha256:1f3e46996e2966e4faa5846e56e76e3748b7315e2ded61476c24403d592134f0                                                                                                                  0.1s
+ => [xconfadmin stage-1 2/2] WORKDIR /app                                                                                                                                                                  0.1s
+ => [xconfadmin] exporting to image                                                                                                                                                                        0.1s
+ => => exporting layers                                                                                                                                                                                    0.0s
+ => => writing image sha256:c6b918b7f8c1af1b40924a8b329574d3d443db61150ae56ef9f9344700edc45b                                                                                                               0.0s
+ => => naming to docker.io/library/xconf-jan13-xconfadmin                                                                                                                                                  0.0s
+ => [xconfadmin] resolving provenance for metadata file                                                                                                                                                    0.0s
+ => [xconfwebconfig stage-1 2/3] WORKDIR /root/                                                                                                                                                            0.1s
+ => [xconfui 5/5] COPY . .                                                                                                                                                                                 0.1s
+ => [xconfui] exporting to image                                                                                                                                                                           0.9s
+ => => exporting layers                                                                                                                                                                                    0.9s
+ => => writing image sha256:801ced4e3ca61faa686df296123109a969bfa29fc9e277bc330876ba1e515815                                                                                                               0.0s
+ => => naming to docker.io/library/xconf-jan13-xconfui                                                                                                                                                     0.0s
+ => [xconfui] resolving provenance for metadata file                                                                                                                                                       0.0s
+ => [xconfwebconfig builder 2/6] WORKDIR /app                                                                                                                                                              0.2s
+ => [xconfwebconfig builder 3/6] COPY go.mod go.sum ./                                                                                                                                                     0.1s
+ => [xconfwebconfig builder 4/6] RUN go mod download                                                                                                                                                       7.0s
+ => [xconfwebconfig builder 5/6] COPY . .                                                                                                                                                                  0.1s
+ => [xconfwebconfig builder 6/6] RUN go build -o xconfwebconfig .                                                                                                                                          3.7s
+ => [xconfwebconfig stage-1 3/3] COPY --from=builder /app/xconfwebconfig .                                                                                                                                 0.1s
+ => [xconfwebconfig] exporting to image                                                                                                                                                                    0.1s
+[+] Running 7/7g layers                                                                                                                                                                                    0.1s
+ ✔ Service xconfadmin           Built                                                                                                                                                                     19.3s
+ ✔ Service xconfwebconfig       Built                                                                                                                                                                     67.1s
+ ✔ Service xconfui              Built                                                                                                                                                                     35.6s
+ ✔ Network xconf-jan13_default  Created                                                                                                                                                                    0.3s
+ ✔ Container xconfadmin         Created                                                                                                                                                                    0.1s
+ ✔ Container xconfwebconfig     Created                                                                                                                                                                    0.1s
+ ✔ Container xconfui            Created                                                                                                                                                                    0.1s
+Attaching to xconfadmin, xconfui, xconfwebconfig
+xconfwebconfig  | panic: open /app/xconfwebconfig/xconfwebconfig.conf: no such file or directory
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:60 +0xab6
+xconfui         | npm ERR! missing script: start
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-16T06_06_05_465Z-debug.log
+Gracefully stopping... (press Ctrl+C again to force)
+Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: "./xconfadmin": stat ./xconfadmin: no such file or directory: unknown
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker images
+REPOSITORY                   TAG       IMAGE ID       CREATED              SIZE
+xconf-jan13-xconfwebconfig   latest    766ede9c83b9   18 seconds ago       24.9MB
+xconf-jan13-xconfui          latest    801ced4e3ca6   52 seconds ago       183MB
+xconf-jan13-xconfadmin       latest    c6b918b7f8c1   About a minute ago   80.7MB
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps -a
+CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS                         PORTS                                       NAMES
+4357465b0943   xconf-jan13-xconfwebconfig   "./xconfwebconfig"       21 seconds ago   Restarting (2) 1 second ago                                                xconfwebconfig
+52ba7a6aee82   xconf-jan13-xconfui          "docker-entrypoint.s…"   21 seconds ago   Restarting (1) 5 seconds ago                                               xconfui
+f41c8108e915   xconf-jan13-xconfadmin       "./xconfadmin"           21 seconds ago   Created                        0.0.0.0:9000->9000/tcp, :::9000->9000/tcp   xconfadmin
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps
+CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS                         PORTS     NAMES
+4357465b0943   xconf-jan13-xconfwebconfig   "./xconfwebconfig"       25 seconds ago   Restarting (2) 4 seconds ago             xconfwebconfig
+52ba7a6aee82   xconf-jan13-xconfui          "docker-entrypoint.s…"   25 seconds ago   Restarting (1) 2 seconds ago             xconfui
