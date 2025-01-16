@@ -1,4 +1,4 @@
- version: '3.9'
+ version: '3.8'
  
  services:
    xconfui:
@@ -7,10 +7,8 @@
        dockerfile: Dockerfile
      ports:
        - "9393:9393"
-     volumes:
-       - ./xconfui:/usr/src/app
-     environment:
-       - NODE_ENV=production
+     container_name: xconfui
+     restart: always
  
    xconfwebconfig:
      build:
@@ -18,10 +16,8 @@
        dockerfile: Dockerfile
      ports:
        - "9001:9001"
-     volumes:
-       - ./xconfwebconfig:/usr/src/app
-     environment:
-       - NODE_ENV=production
+     container_name: xconfwebconfig
+     restart: always
  
    xconfadmin:
      build:
@@ -29,35 +25,6 @@
        dockerfile: Dockerfile
      ports:
        - "9000:9000"
-     volumes:
-       - ./xconfadmin:/app
- # version: '3.8'
- # 
- # services:
- #   xconfui:
- #     build:
- #       context: ./xconfui
- #       dockerfile: Dockerfile
- #     ports:
- #       - "9393:9393"
- #     container_name: xconfui
- #     restart: always
- # 
- #   xconfwebconfig:
- #     build:
- #       context: ./xconfwebconfig
- #       dockerfile: Dockerfile
- #     ports:
- #       - "9001:9001"
- #     container_name: xconfwebconfig
- #     restart: always
- # 
- #   xconfadmin:
- #     build:
- #       context: ./xconfadmin
- #       dockerfile: Dockerfile
- #     ports:
- #       - "9000:9000"
- #     container_name: xconfadmin
- #     restart: always
- # 
+     container_name: xconfadmin
+     restart: always
+ 
