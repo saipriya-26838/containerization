@@ -1,0 +1,1532 @@
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker-compose up --build
+WARN[0000] /home/saipriya/containerization/xconf-jan13/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+[+] Running 0/0
+[+] Running 0/3fui         Building                                                                                                                                                                        0.1s
+ ⠙ Service xconfui         Building                                                                                                                                                                        0.2s
+ ⠙ Service xconfwebconfig  Building                                                                                                                                                                        0.2s
+[+] Building 4.1s (51/51) FINISHED                                                                                                                                                               docker:default
+ => [xconfui internal] load build definition from Dockerfile                                                                                                                                               0.1s
+ => => transferring dockerfile: 1.38kB                                                                                                                                                                     0.0s
+ => [xconfwebconfig internal] load build definition from Dockerfile                                                                                                                                        0.1s
+ => => transferring dockerfile: 1.81kB                                                                                                                                                                     0.0s
+ => WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 2)                                                                                                                             0.1s
+ => [xconfadmin internal] load build definition from Dockerfile                                                                                                                                            0.1s
+ => => transferring dockerfile: 1.74kB                                                                                                                                                                     0.0s
+ => WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 2)                                                                                                                             0.1s
+ => [xconfwebconfig internal] load metadata for docker.io/library/golang:1.18-alpine                                                                                                                       3.5s
+ => [xconfwebconfig internal] load metadata for docker.io/library/alpine:latest                                                                                                                            2.1s
+ => [xconfadmin internal] load metadata for docker.io/library/debian:bullseye-slim                                                                                                                         2.1s
+ => [xconfadmin internal] load metadata for docker.io/library/golang:1.20                                                                                                                                  3.6s
+ => [xconfui internal] load metadata for docker.io/library/node:14-alpine                                                                                                                                  1.8s
+ => [xconfwebconfig auth] library/alpine:pull token for registry-1.docker.io                                                                                                                               0.0s
+ => [xconfwebconfig auth] library/golang:pull token for registry-1.docker.io                                                                                                                               0.0s
+ => [xconfadmin auth] library/debian:pull token for registry-1.docker.io                                                                                                                                   0.0s
+ => [xconfui auth] library/node:pull token for registry-1.docker.io                                                                                                                                        0.0s
+ => [xconfui internal] load .dockerignore                                                                                                                                                                  0.0s
+ => => transferring context: 2B                                                                                                                                                                            0.0s
+ => [xconfui 1/6] FROM docker.io/library/node:14-alpine@sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33                                                                            0.0s
+ => [xconfui internal] load build context                                                                                                                                                                  0.1s
+ => => transferring context: 1.98MB                                                                                                                                                                        0.1s
+ => CACHED [xconfui 2/6] WORKDIR /usr/src/app                                                                                                                                                              0.0s
+ => CACHED [xconfui 3/6] COPY package*.json ./                                                                                                                                                             0.0s
+ => CACHED [xconfui 4/6] RUN npm install && npm audit fix                                                                                                                                                  0.0s
+ => CACHED [xconfui 5/6] COPY config/sample_xconfui.conf /usr/src/app/config/sample_xconfui.conf                                                                                                           0.0s
+ => CACHED [xconfui 6/6] COPY . .                                                                                                                                                                          0.0s
+ => [xconfui] exporting to image                                                                                                                                                                           0.0s
+ => => exporting layers                                                                                                                                                                                    0.0s
+ => => writing image sha256:0db99dc489e10077da2a3baa8bafef92cccd8d81a7b50184e887874c18c4a972                                                                                                               0.0s
+ => => naming to docker.io/library/xconf-jan13-xconfui                                                                                                                                                     0.0s
+ => [xconfui] resolving provenance for metadata file                                                                                                                                                       0.0s
+ => [xconfwebconfig internal] load .dockerignore                                                                                                                                                           0.0s
+ => => transferring context: 2B                                                                                                                                                                            0.0s
+ => [xconfwebconfig builder 1/6] FROM docker.io/library/golang:1.18-alpine@sha256:77f25981bd57e60a510165f3be89c901aec90453fd0f1c5a45691f6cb1528807                                                         0.0s
+ => [xconfwebconfig stage-1 1/4] FROM docker.io/library/alpine:latest@sha256:56fa17d2a7e7f168a043a2712e63aed1f8543aeafdcee47c58dcffe38ed51099                                                              0.0s
+ => [xconfwebconfig internal] load build context                                                                                                                                                           0.1s
+ => => transferring context: 1.19MB                                                                                                                                                                        0.1s
+ => [xconfadmin internal] load .dockerignore                                                                                                                                                               0.0s
+ => => transferring context: 2B                                                                                                                                                                            0.0s
+ => [xconfadmin builder 1/6] FROM docker.io/library/golang:1.20@sha256:8f9af7094d0cb27cc783c697ac5ba25efdc4da35f8526db21f7aebb0b0b4f18a                                                                    0.0s
+ => [xconfadmin stage-1 1/5] FROM docker.io/library/debian:bullseye-slim@sha256:6344a6747740d465bff88e833e43ef881a8c4dd51950dba5b30664c93f74cbef                                                           0.0s
+ => [xconfadmin internal] load build context                                                                                                                                                               0.1s
+ => => transferring context: 1.46MB                                                                                                                                                                        0.1s
+ => CACHED [xconfwebconfig stage-1 2/4] WORKDIR /app                                                                                                                                                       0.0s
+ => CACHED [xconfwebconfig builder 2/6] WORKDIR /app                                                                                                                                                       0.0s
+ => CACHED [xconfwebconfig builder 3/6] COPY go.mod go.sum ./                                                                                                                                              0.0s
+ => CACHED [xconfwebconfig builder 4/6] RUN go mod download                                                                                                                                                0.0s
+ => CACHED [xconfwebconfig builder 5/6] COPY . .                                                                                                                                                           0.0s
+ => CACHED [xconfwebconfig builder 6/6] RUN go build -o xconfwebconfig .                                                                                                                                   0.0s
+ => CACHED [xconfwebconfig stage-1 3/4] COPY --from=builder /app/xconfwebconfig .                                                                                                                          0.0s
+ => CACHED [xconfwebconfig stage-1 4/4] COPY config/sample_xconfwebconfig.conf /app/xconfwebconfig.conf                                                                                                    0.0s
+ => [xconfwebconfig] exporting to image                                                                                                                                                                    0.0s
+ => => exporting layers                                                                                                                                                                                    0.0s
+ => => writing image sha256:6dbf710c6aeeb7d89da4b24b77b434da0b235cddfa83898d71c02925639eafb9                                                                                                               0.0s
+ => => naming to docker.io/library/xconf-jan13-xconfwebconfig                                                                                                                                              0.0s
+ => [xconfwebconfig] resolving provenance for metadata file                                                                                                                                                0.0s
+ => CACHED [xconfadmin stage-1 2/5] WORKDIR /app                                                                                                                                                           0.0s
+ => CACHED [xconfadmin builder 2/6] WORKDIR /app                                                                                                                                                           0.0s
+ => CACHED [xconfadmin builder 3/6] COPY go.mod go.sum ./                                                                                                                                                  0.0s
+ => CACHED [xconfadmin builder 4/6] RUN go mod download                                                                                                                                                    0.0s
+ => CACHED [xconfadmin builder 5/6] COPY . .                                                                                                                                                               0.0s
+ => CACHED [xconfadmin builder 6/6] RUN go build -o xconfadmin main.go                                                                                                                                     0.0s
+ => CACHED [xconfadmin stage-1 3/5] COPY --from=builder /app/xconfadmin ./                                                                                                                                 0.0s
+ => CACHED [xconfadmin stage-1 4/5] COPY --from=builder /app/config/sample_xconfadmin.conf ./config/                                                                                                       0.0s
+ => CACHED [xconfadmin stage-1 5/5] COPY --from=builder /app/config/sample_xconfwebconfig.conf ./config/                                                                                                   0.0s
+ => [xconfadmin] exporting to image                                                                                                                                                                        0.0s
+[+] Running 7/7g layers                                                                                                                                                                                    0.0s
+ ✔ Service xconfui              Built                                                                                                                                                                      2.3s
+ ✔ Service xconfwebconfig       Built                                                                                                                                                                      4.1s
+ ✔ Service xconfadmin           Built                                                                                                                                                                      4.2s
+ ✔ Network xconf-jan13_default  Created                                                                                                                                                                    0.3s
+ ✔ Container xconfui            Created                                                                                                                                                                    0.1s
+ ✔ Container xconfwebconfig     Created                                                                                                                                                                    0.1s
+ ✔ Container xconfadmin         Created                                                                                                                                                                    0.1s
+Attaching to xconfadmin, xconfui, xconfwebconfig
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         |   ^
+xconfui         |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |   requireStack: []
+xconfui         | }
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_45_44_163Z-debug.log
+xconfadmin exited with code 0
+xconfwebconfig exited with code 0
+xconfui exited with code 0
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00031e180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003de180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000304180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003c41a0, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00032c180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003ec1c0, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfadmin exited with code 1
+xconfwebconfig exited with code 2
+xconfui exited with code 0
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         |   ^
+xconfui         |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |   requireStack: []
+xconfui         | }
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_45_49_695Z-debug.log
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00031e180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003de180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000304180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003c41a0, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00032c180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003ec1c0, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000300e40?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d7640, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfadmin exited with code 1
+xconfwebconfig exited with code 2
+xconfui exited with code 0
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig exited with code 2
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00031e180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003de180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfadmin exited with code 1
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000304180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003c41a0, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00032c180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003ec1c0, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000300e40?, 0x0)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d7640, 0xf0?, {0x0, 0x0})
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfwebconfig  | main.main()
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  |
+xconfui exited with code 0
+xconfwebconfig  | goroutine 1 [running]:
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfadmin exited with code 1
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfwebconfig exited with code 2
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00031e180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003de180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000304180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003c41a0, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00032c180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003ec1c0, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000300e40?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d7640, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         |
+xconfui         |
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         | > node index.js
+xconfui         | > node index.js
+xconfui         |
+xconfui         |
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   ^
+xconfui         |   throw err;
+xconfui         |   throw err;
+xconfui         |
+xconfui         |   ^
+xconfui         |   ^
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |
+xconfui         |
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |   requireStack: []
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         | }
+xconfui         |   requireStack: []
+xconfui         |   requireStack: []
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | }
+xconfui         | }
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         |
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR!
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_45_51_357Z-debug.log
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR!
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         |
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         |
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_45_51_357Z-debug.log
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_45_51_357Z-debug.log
+xconfui exited with code 1
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfadmin exited with code 1
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig exited with code 2
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00031e180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003de180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000304180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003c41a0, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00032c180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003ec1c0, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000300e40?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d7640, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000396180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc000456180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         |   ^
+xconfui         |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |   requireStack: []
+xconfui         | }
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_45_53_689Z-debug.log
+xconfui exited with code 1
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin exited with code 1
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig exited with code 2
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00031e180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003de180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000304180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003c41a0, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00032c180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003ec1c0, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000300e40?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d7640, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000396180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc000456180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         |   ^
+xconfui         |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |   requireStack: []
+xconfui         | }
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_45_57_479Z-debug.log
+xconfui exited with code 1
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin exited with code 1
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig exited with code 2
+Gracefully stopping... (press Ctrl+C again to force)
+[+] Stopping 3/3
+ ✔ Container xconfui         Stopped                                                                                                                                                                       1.0s
+ ✔ Container xconfwebconfig  Stopped                                                                                                                                                                       0.0s
+ ✔ Container xconfadmin      Stopped                                                                                                                                                                       0.0s
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker-compose down
+WARN[0000] /home/saipriya/containerization/xconf-jan13/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+[+] Running 4/4
+ ✔ Container xconfwebconfig     Removed                                                                                                                                                                    0.0s
+ ✔ Container xconfui            Removed                                                                                                                                                                    0.0s
+ ✔ Container xconfadmin         Removed                                                                                                                                                                    0.0s
+ ✔ Network xconf-jan13_default  Removed                                                                                                                                                                    0.7s
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker images
+REPOSITORY                   TAG       IMAGE ID       CREATED          SIZE
+xconf-jan13-xconfwebconfig   latest    6dbf710c6aee   9 minutes ago    24.9MB
+xconf-jan13-xconfadmin       latest    eb6294996668   9 minutes ago    102MB
+xconf-jan13-xconfui          latest    0db99dc489e1   16 minutes ago   183MB
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker-compose up --build
+WARN[0000] /home/saipriya/containerization/xconf-jan13/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+[+] Running 0/0
+ ⠋ Service xconfwebconfig  Building                                                                                                                                                                        0.1s
+[+] Running 0/3fadmin      Building                                                                                                                                                                        0.1s
+ ⠙ Service xconfwebconfig  Building                                                                                                                                                                        0.2s
+[+] Building 1.8s (47/47) FINISHED                                                                                                                                                               docker:default
+ => [xconfwebconfig internal] load build definition from Dockerfile                                                                                                                                        0.0s
+ => => transferring dockerfile: 1.81kB                                                                                                                                                                     0.0s
+ => WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 2)                                                                                                                             0.0s
+ => [xconfui internal] load build definition from Dockerfile                                                                                                                                               0.0s
+ => => transferring dockerfile: 1.38kB                                                                                                                                                                     0.0s
+ => [xconfadmin internal] load build definition from Dockerfile                                                                                                                                            0.0s
+ => => transferring dockerfile: 1.74kB                                                                                                                                                                     0.0s
+ => WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 2)                                                                                                                             0.0s
+ => [xconfui internal] load metadata for docker.io/library/node:14-alpine                                                                                                                                  1.3s
+ => [xconfwebconfig internal] load metadata for docker.io/library/alpine:latest                                                                                                                            1.3s
+ => [xconfwebconfig internal] load metadata for docker.io/library/golang:1.18-alpine                                                                                                                       1.3s
+ => [xconfadmin internal] load metadata for docker.io/library/debian:bullseye-slim                                                                                                                         1.3s
+ => [xconfadmin internal] load metadata for docker.io/library/golang:1.20                                                                                                                                  1.3s
+ => [xconfwebconfig internal] load .dockerignore                                                                                                                                                           0.0s
+ => => transferring context: 2B                                                                                                                                                                            0.0s
+ => [xconfui internal] load .dockerignore                                                                                                                                                                  0.0s
+ => => transferring context: 2B                                                                                                                                                                            0.0s
+ => [xconfadmin internal] load .dockerignore                                                                                                                                                               0.0s
+ => => transferring context: 2B                                                                                                                                                                            0.0s
+ => [xconfwebconfig builder 1/6] FROM docker.io/library/golang:1.18-alpine@sha256:77f25981bd57e60a510165f3be89c901aec90453fd0f1c5a45691f6cb1528807                                                         0.0s
+ => [xconfwebconfig internal] load build context                                                                                                                                                           0.0s
+ => => transferring context: 9.13kB                                                                                                                                                                        0.0s
+ => [xconfwebconfig stage-1 1/4] FROM docker.io/library/alpine:latest@sha256:56fa17d2a7e7f168a043a2712e63aed1f8543aeafdcee47c58dcffe38ed51099                                                              0.0s
+ => [xconfadmin builder 1/6] FROM docker.io/library/golang:1.20@sha256:8f9af7094d0cb27cc783c697ac5ba25efdc4da35f8526db21f7aebb0b0b4f18a                                                                    0.0s
+ => [xconfadmin stage-1 1/5] FROM docker.io/library/debian:bullseye-slim@sha256:6344a6747740d465bff88e833e43ef881a8c4dd51950dba5b30664c93f74cbef                                                           0.0s
+ => [xconfadmin internal] load build context                                                                                                                                                               0.0s
+ => => transferring context: 8.97kB                                                                                                                                                                        0.0s
+ => [xconfui 1/6] FROM docker.io/library/node:14-alpine@sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33                                                                            0.0s
+ => [xconfui internal] load build context                                                                                                                                                                  0.0s
+ => => transferring context: 32.45kB                                                                                                                                                                       0.0s
+ => CACHED [xconfwebconfig stage-1 2/4] WORKDIR /app                                                                                                                                                       0.0s
+ => CACHED [xconfwebconfig builder 2/6] WORKDIR /app                                                                                                                                                       0.0s
+ => CACHED [xconfwebconfig builder 3/6] COPY go.mod go.sum ./                                                                                                                                              0.0s
+ => CACHED [xconfwebconfig builder 4/6] RUN go mod download                                                                                                                                                0.0s
+ => CACHED [xconfwebconfig builder 5/6] COPY . .                                                                                                                                                           0.0s
+ => CACHED [xconfwebconfig builder 6/6] RUN go build -o xconfwebconfig .                                                                                                                                   0.0s
+ => CACHED [xconfwebconfig stage-1 3/4] COPY --from=builder /app/xconfwebconfig .                                                                                                                          0.0s
+ => CACHED [xconfwebconfig stage-1 4/4] COPY config/sample_xconfwebconfig.conf /app/xconfwebconfig.conf                                                                                                    0.0s
+ => [xconfwebconfig] exporting to image                                                                                                                                                                    0.0s
+ => => exporting layers                                                                                                                                                                                    0.0s
+ => => writing image sha256:6dbf710c6aeeb7d89da4b24b77b434da0b235cddfa83898d71c02925639eafb9                                                                                                               0.0s
+ => => naming to docker.io/library/xconf-jan13-xconfwebconfig                                                                                                                                              0.0s
+ => CACHED [xconfadmin stage-1 2/5] WORKDIR /app                                                                                                                                                           0.0s
+ => CACHED [xconfadmin builder 2/6] WORKDIR /app                                                                                                                                                           0.0s
+ => CACHED [xconfadmin builder 3/6] COPY go.mod go.sum ./                                                                                                                                                  0.0s
+ => CACHED [xconfadmin builder 4/6] RUN go mod download                                                                                                                                                    0.0s
+ => CACHED [xconfadmin builder 5/6] COPY . .                                                                                                                                                               0.0s
+ => CACHED [xconfadmin builder 6/6] RUN go build -o xconfadmin main.go                                                                                                                                     0.0s
+ => CACHED [xconfadmin stage-1 3/5] COPY --from=builder /app/xconfadmin ./                                                                                                                                 0.0s
+ => CACHED [xconfadmin stage-1 4/5] COPY --from=builder /app/config/sample_xconfadmin.conf ./config/                                                                                                       0.0s
+ => CACHED [xconfadmin stage-1 5/5] COPY --from=builder /app/config/sample_xconfwebconfig.conf ./config/                                                                                                   0.0s
+ => [xconfadmin] exporting to image                                                                                                                                                                        0.0s
+ => => exporting layers                                                                                                                                                                                    0.0s
+ => => writing image sha256:eb62949966681a42dc6c5bcc7919c3cb8a2f02d89793466345767cb77d9c3249                                                                                                               0.0s
+ => => naming to docker.io/library/xconf-jan13-xconfadmin                                                                                                                                                  0.0s
+ => CACHED [xconfui 2/6] WORKDIR /usr/src/app                                                                                                                                                              0.0s
+ => CACHED [xconfui 3/6] COPY package*.json ./                                                                                                                                                             0.0s
+ => CACHED [xconfui 4/6] RUN npm install && npm audit fix                                                                                                                                                  0.0s
+ => CACHED [xconfui 5/6] COPY config/sample_xconfui.conf /usr/src/app/config/sample_xconfui.conf                                                                                                           0.0s
+ => CACHED [xconfui 6/6] COPY . .                                                                                                                                                                          0.0s
+ => [xconfui] exporting to image                                                                                                                                                                           0.0s
+ => => exporting layers                                                                                                                                                                                    0.0s
+ => => writing image sha256:0db99dc489e10077da2a3baa8bafef92cccd8d81a7b50184e887874c18c4a972                                                                                                               0.0s
+[+] Running 7/4o docker.io/library/xconf-jan13-xconfui                                                                                                                                                     0.0s
+ ✔ Service xconfwebconfig       Built                                                                                                                                                                      1.8s
+ ✔ Service xconfadmin           Built                                                                                                                                                                      1.8s
+ ✔ Service xconfui              Built                                                                                                                                                                      1.9s
+ ✔ Network xconf-jan13_default  Created                                                                                                                                                                    0.2s
+ ✔ Container xconfui            Created                                                                                                                                                                    0.1s
+ ✔ Container xconfwebconfig     Created                                                                                                                                                                    0.1s
+ ✔ Container xconfadmin         Created                                                                                                                                                                    0.1s
+Attaching to xconfadmin, xconfui, xconfwebconfig
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         |   ^
+xconfui         |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |   requireStack: []
+xconfui         | }
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_46_56_174Z-debug.log
+xconfadmin exited with code 0
+xconfwebconfig exited with code 0
+xconfui exited with code 0
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin exited with code 0
+xconfwebconfig exited with code 0
+xconfui exited with code 0
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         |   ^
+xconfui         |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |   requireStack: []
+xconfui         | }
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_47_02_104Z-debug.log
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfadmin exited with code 1
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig exited with code 2
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc0002a6180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc000366180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000296e40?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003cb640, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000302e40?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d7640, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         |   ^
+xconfui         |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfui         |   requireStack: []
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfui         | }
+xconfwebconfig  |
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfui         | npm ERR! code ELIFECYCLE
+xconfwebconfig  | goroutine 1 [running]:
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfui exited with code 1
+xconfui         | npm ERR! errno 1
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfui         | npm ERR! Exit status 1
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfadmin exited with code 1
+xconfui         | npm ERR!
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfwebconfig exited with code 2
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_46_56_174Z-debug.log
+xconfui         |
+xconfwebconfig  |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfui         | > node index.js
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc0002a6180?, 0x0)
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfui         |   ^
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc000366180, 0xf0?, {0x0, 0x0})
+xconfui         |
+xconfui         |
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfwebconfig  | main.main()
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         | > node index.js
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfui         |
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfwebconfig  |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfwebconfig  | goroutine 1 [running]:
+xconfui         |   throw err;
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfui         |   ^
+xconfui         |   requireStack: []
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfui         | }
+xconfui         |
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000296e40?, 0x0)
+xconfui         | npm ERR! code ELIFECYCLE
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfui         | npm ERR! errno 1
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfadmin exited with code 1
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003cb640, 0xf0?, {0x0, 0x0})
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfwebconfig  |
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfui         | npm ERR! Exit status 1
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig exited with code 2
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfwebconfig  | main.main()
+xconfui         | npm ERR!
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui exited with code 1
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfui         |   requireStack: []
+xconfwebconfig  |
+xconfui         |
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfui         | }
+xconfwebconfig  | goroutine 1 [running]:
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0x90?, {0x0, 0x0})
+xconfui         | npm ERR! code ELIFECYCLE
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_46_58_182Z-debug.log
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfui         | npm ERR! errno 1
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfui         |
+xconfwebconfig  | main.main()
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000302e40?, 0x0)
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         | npm ERR! Exit status 1
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfui         | > node index.js
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfui         | npm ERR!
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d7640, 0xf0?, {0x0, 0x0})
+xconfui         |
+xconfwebconfig  |
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfui         | internal/modules/cjs/loader.js:934
+xconfwebconfig  | goroutine 1 [running]:
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfwebconfig  | main.main()
+xconfui         |   throw err;
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfui         |
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         |   ^
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfui         |
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc0002a6180?, 0x0)
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_46_56_174Z-debug.log
+xconfwebconfig  |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfui         |
+xconfwebconfig  | goroutine 1 [running]:
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc000366180, 0xf0?, {0x0, 0x0})
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfui         | > node index.js
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfwebconfig  | main.main()
+xconfui         |
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         | internal/modules/cjs/loader.js:934
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfui         |   throw err;
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfui         |   requireStack: []
+xconfwebconfig  |
+xconfui         |   ^
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfui         | }
+xconfwebconfig  | goroutine 1 [running]:
+xconfui         |
+xconfwebconfig  | main.main()
+xconfui         | npm ERR! code ELIFECYCLE
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         | npm ERR! errno 1
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000296e40?, 0x0)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         | npm ERR! Exit status 1
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         | npm ERR!
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003cb640, 0xf0?, {0x0, 0x0})
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfwebconfig  | main.main()
+xconfui         |   requireStack: []
+xconfui         |
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         | }
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_47_00_243Z-debug.log
+xconfwebconfig  |
+xconfui         | npm ERR! errno 1
+xconfui         |
+xconfwebconfig  | goroutine 1 [running]:
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfui         | npm ERR! Exit status 1
+xconfui         | > node index.js
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfui         | npm ERR!
+xconfui         |
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000302e40?, 0x0)
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | internal/modules/cjs/loader.js:934
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |   throw err;
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d7640, 0xf0?, {0x0, 0x0})
+xconfui         |
+xconfui         |   ^
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         |
+xconfwebconfig  | main.main()
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_46_58_182Z-debug.log
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         |
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfwebconfig  |
+xconfui         | > node index.js
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfwebconfig  | goroutine 1 [running]:
+xconfui         |
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfui         |   throw err;
+xconfui         |   requireStack: []
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfui         |   ^
+xconfui         | }
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfui         |
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfui         | npm ERR! errno 1
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfwebconfig  | main.main()
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         | npm ERR! Exit status 1
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         | npm ERR!
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |   requireStack: []
+xconfui         |
+xconfui         | }
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_47_02_104Z-debug.log
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_47_00_243Z-debug.log
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         |   ^
+xconfui         |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |   requireStack: []
+xconfui         | }
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_47_02_104Z-debug.log
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         |   ^
+xconfui         |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |   requireStack: []
+xconfui         | }
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_47_03_468Z-debug.log
+xconfui exited with code 1
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfadmin exited with code 1
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig exited with code 2
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0x90?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc0002a6180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc000366180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000296e40?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003cb640, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000302e40?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d7640, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc000316180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003d6180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfwebconfig  | panic: missing env SAT_KEY
+xconfwebconfig  |
+xconfwebconfig  | goroutine 1 [running]:
+xconfwebconfig  | xconfwebconfig/security.NewAesCodec()
+xconfwebconfig  |       /app/security/aes_codec.go:88 +0xee
+xconfwebconfig  | xconfwebconfig/db.NewCassandraClient(0xc00031e180?, 0x0)
+xconfwebconfig  |       /app/db/cassandra_client.go:108 +0x4e5
+xconfwebconfig  | xconfwebconfig/http.NewXconfServer(0xc0003de180, 0xf0?, {0x0, 0x0})
+xconfwebconfig  |       /app/http/webconfig_server.go:114 +0x110
+xconfwebconfig  | main.main()
+xconfwebconfig  |       /app/main.go:62 +0x21b
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         |   ^
+xconfui         |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |   requireStack: []
+xconfui         | }
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_47_05_750Z-debug.log
+xconfui exited with code 1
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfwebconfig exited with code 2
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin exited with code 1
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./xconfadmin)
+xconfadmin      | ./xconfadmin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./xconfadmin)
+xconfui         |
+xconfui         | > XCONF-AngularJS-UI@0.0.1 start /usr/src/app
+xconfui         | > node index.js
+xconfui         |
+xconfui         | internal/modules/cjs/loader.js:934
+xconfui         |   throw err;
+xconfui         |   ^
+xconfui         |
+xconfui         | Error: Cannot find module '/usr/src/app/index.js'
+xconfui         |     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:931:15)
+xconfui         |     at Function.Module._load (internal/modules/cjs/loader.js:774:27)
+xconfui         |     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:75:12)
+xconfui         |     at internal/main/run_main_module.js:17:47 {
+xconfui         |   code: 'MODULE_NOT_FOUND',
+xconfui         |   requireStack: []
+xconfui         | }
+xconfui         | npm ERR! code ELIFECYCLE
+xconfui         | npm ERR! errno 1
+xconfui         | npm ERR! XCONF-AngularJS-UI@0.0.1 start: `node index.js`
+xconfui         | npm ERR! Exit status 1
+xconfui         | npm ERR!
+xconfui         | npm ERR! Failed at the XCONF-AngularJS-UI@0.0.1 start script.
+xconfui         | npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+xconfui         |
+xconfui         | npm ERR! A complete log of this run can be found in:
+xconfui         | npm ERR!     /root/.npm/_logs/2025-01-17T10_47_09_550Z-debug.log
+xconfui exited with code 1
+Gracefully stopping... (press Ctrl+C again to force)
+[+] Stopping 3/0
+ ✔ Container xconfadmin      Stopped                                                                                                                                                                       0.0s
+ ✔ Container xconfui         Stopped                                                                                                                                                                       0.0s
+ ✔ Container xconfwebconfig  Stopped                                                                                                                                                                       0.0s
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps -a
+CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS                     PORTS     NAMES
+63abccd0120b   xconf-jan13-xconfadmin       "./xconfadmin -confi…"   18 seconds ago   Exited (1) 5 seconds ago             xconfadmin
+9a4c53a02131   xconf-jan13-xconfwebconfig   "./xconfwebconfig -f…"   18 seconds ago   Exited (2) 5 seconds ago             xconfwebconfig
+aa8fd6de7134   xconf-jan13-xconfui          "docker-entrypoint.s…"   18 seconds ago   Exited (1) 3 seconds ago             xconfui
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker images
+REPOSITORY                   TAG       IMAGE ID       CREATED          SIZE
+xconf-jan13-xconfwebconfig   latest    6dbf710c6aee   10 minutes ago   24.9MB
+xconf-jan13-xconfadmin       latest    eb6294996668   10 minutes ago   102MB
+xconf-jan13-xconfui          latest    0db99dc489e1   17 minutes ago   183MB
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker-compose down
+WARN[0000] /home/saipriya/containerization/xconf-jan13/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+[+] Running 4/4
+ ✔ Container xconfadmin         Removed                                                                                                                                                                    0.0s
+ ✔ Container xconfui            Removed                                                                                                                                                                    0.0s
+ ✔ Container xconfwebconfig     Removed                                                                                                                                                                    0.0s
+ ✔ Network xconf-jan13_default  Removed                                                                                                                                                                    0.7s
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+saipriya@SaiPriya:~/containerization/xconf-jan13$ docker images
+REPOSITORY                   TAG       IMAGE ID       CREATED          SIZE
+xconf-jan13-xconfwebconfig   latest    6dbf710c6aee   10 minutes ago   24.9MB
+xconf-jan13-xconfadmin       latest    eb6294996668   10 minutes ago   102MB
+xconf-jan13-xconfui          latest    0db99dc489e1   17 minutes ago   183MB
+saipriya@SaiPriya:~/containerization/xconf-jan13$
