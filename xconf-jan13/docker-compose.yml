@@ -1,30 +1,173 @@
- version: '3.8'
- 
- services:
-   xconfui:
-     build:
-       context: ./xconfui
-       dockerfile: Dockerfile
-     ports:
-       - "9393:9393"
-     container_name: xconfui
-     restart: always
- 
-   xconfwebconfig:
-     build:
-       context: ./xconfwebconfig
-       dockerfile: Dockerfile
-     ports:
-       - "9001:9001"
-     container_name: xconfwebconfig
-     restart: always
- 
-   xconfadmin:
-     build:
-       context: ./xconfadmin
-       dockerfile: Dockerfile
-     ports:
-       - "9000:9000"
-     container_name: xconfadmin
-     restart: always
- 
+#to fix initialization issue
+version: '3.8'
+
+services:
+  cassandra:
+    image: cassandra:4.0
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=XconfCluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_ENDPOINT_SNITCH=SimpleSnitch
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+      - ./xconfwebconfig/db/db_init.cql:/docker-entrypoint-initdb.d/db_init.cql  # Mount the CQL script
+    networks:
+      - xconf_network
+    command: ["sh", "-c", "docker-entrypoint.sh cassandra & sleep 30 && cqlsh -f /docker-entrypoint-initdb.d/db_init.cql"]  # Run the init script after cassandra is up
+
+  xconfui:
+    build:
+      context: ./xconfui
+      dockerfile: Dockerfile
+    ports:
+      - "9393:9393"
+    container_name: xconfui
+    networks:
+      - xconf_network
+    depends_on:
+      - cassandra
+
+  xconfwebconfig:
+    build:
+      context: ./xconfwebconfig
+      dockerfile: Dockerfile
+    environment:
+      - SAT_KEY=dGVzdF9rZXkK
+      - CASSANDRA_HOST=cassandra
+      - CASSANDRA_PORT=9042
+      - CASSANDRA_USERNAME=cassandra
+      - CASSANDRA_PASSWORD=cassandra
+    ports:
+      - "9001:9001"
+    container_name: xconfwebconfig
+    networks:
+      - xconf_network
+    depends_on:
+      - cassandra
+
+  xconfadmin:
+    build:
+      context: ./xconfadmin
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    container_name: xconfadmin
+    networks:
+      - xconf_network
+    depends_on:
+      - cassandra
+
+volumes:
+  cassandra_data:
+
+networks:
+  xconf_network:
+    driver: bridge
+
+#cassandra db issue fix
+#version: '3.8'
+#
+#services:
+#  cassandra:
+#    image: cassandra:4.0
+#    container_name: cassandra
+#    ports:
+#      - "9042:9042"
+#    environment:
+#      - CASSANDRA_CLUSTER_NAME=XconfCluster
+#      - CASSANDRA_DC=datacenter1
+#      - CASSANDRA_RACK=rack1
+#      - CASSANDRA_ENDPOINT_SNITCH=SimpleSnitch
+#    volumes:
+#      - cassandra_data:/var/lib/cassandra
+#    networks:
+#      - xconf_network
+#
+#  xconfui:
+#    build:
+#      context: ./xconfui
+#      dockerfile: Dockerfile
+#    ports:
+#      - "9393:9393"
+#    container_name: xconfui
+#    networks:
+#      - xconf_network
+#    depends_on:
+#      - cassandra
+#
+#  xconfwebconfig:
+#    build:
+#      context: ./xconfwebconfig
+#      dockerfile: Dockerfile
+#    environment:
+#      - SAT_KEY=dGVzdF9rZXkK
+#      - CASSANDRA_HOST=cassandra
+#      - CASSANDRA_PORT=9042
+#      - CASSANDRA_USERNAME=cassandra
+#      - CASSANDRA_PASSWORD=cassandra
+#    ports:
+#      - "9001:9001"
+#    container_name: xconfwebconfig
+#    networks:
+#      - xconf_network
+#    depends_on:
+#      - cassandra
+#
+#  xconfadmin:
+#    build:
+#      context: ./xconfadmin
+#      dockerfile: Dockerfile
+#    ports:
+#      - "9000:9000"
+#    container_name: xconfadmin
+#    networks:
+#      - xconf_network
+#    depends_on:
+#      - cassandra
+#
+#volumes:
+#  cassandra_data:
+#
+#networks:
+#  xconf_network:
+#    driver: bridge
+#
+##---------v4___________
+## version: '3.8'
+## 
+## services:
+##   xconfui:
+##     build:
+##       context: ./xconfui
+##       dockerfile: Dockerfile
+##     ports:
+##       - "9393:9393"
+##     container_name: xconfui
+##       #restart: always
+## 
+##   xconfwebconfig:
+##     build:
+##       context: ./xconfwebconfig
+##       dockerfile: Dockerfile
+##     environment:
+##       #       - XPC_KEY=dGVzdF9rZXkK
+##       - SAT_KEY=dGVzdF9rZXkK
+##    
+##     ports:
+##       - "9001:9001"
+##     container_name: xconfwebconfig
+##       #restart: always
+## 
+##   xconfadmin:
+##     build:
+##       context: ./xconfadmin
+##       dockerfile: Dockerfile
+##     ports:
+##       - "9000:9000"
+##     container_name: xconfadmin
+##       #restart: always
+## 
